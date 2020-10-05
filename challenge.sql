@@ -14,7 +14,7 @@ create table dept_emp(
 );
 
 create table dept_manager(
-	dept_no varchar(40),
+	dept_no int,
     Foreign key (dept_no) references departments(dept_no),
 	manager_no varchar(40) primary key
 );
