@@ -9,7 +9,7 @@ from dept_manager;
 create table dept_emp(
 	emp_no varchar(40),
     foreign key (emp_no) references employees(emp_no),
-	dept_no varchar(40),
+	dept_no int,
     Foreign key (dept_no) references departments(dept_no)
 );
 
@@ -69,11 +69,22 @@ from employees
 where employees.first_name='Hercules' and employees.last_name like 'B%';
 
 -- Part 6
-
-
+select employees.emp_no, employees.last_name, employees.first_name, departments.dept_name
+from employees
+inner join dept_emp on employees.emp_no=dept_emp.emp_no
+inner join departments on dept_emp.dept_no=departments.dept_no
+where departments.dept_name='Sales';
 
 -- Part 7
+select employees.emp_no, employees.last_name, employees.first_name, departments.dept_name
+from employees
+inner join dept_emp on employees.emp_no=dept_emp.emp_no
+inner join departments on dept_emp.dept_no=departments.dept_no
+where departments.dept_name='Sales' or departments.dept_name='Development';
+
 
 -- Part 8
-
-
+select employees.last_name, count(employees.last_name) as "count_name"
+from employees
+group by last_name
+order by count_name DESC;
